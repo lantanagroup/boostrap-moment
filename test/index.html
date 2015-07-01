@@ -7,13 +7,35 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="app.css">
+    <link rel="stylesheet" href="../bootstrap-moment.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" ng-controller="TestCtrl">
         <div class="alert alert-info">Test</div>
-        <bootstrap-moment current-date="CurrentDate"></bootstrap-moment>
-        {{CurrentDate.format()}}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Options</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <select class="form-control" ng-model="Options.Placement">
+                        <option value="left">left</option>
+                        <option value="right">right</option>
+                        <option value="bottom">bottom</option>
+                        <option value="top">top</option>
+                        <option value="auto">auto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" ng-model="Options.Required"> Required
+                </div>
+            </div>
+        </div>
+
+        <div ng-if="!Rendering">
+            <bootstrap-moment current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)"></bootstrap-moment>
+        </div>
+        {{Data.CurrentDate ? Data.CurrentDate.format() : ''}}
+        <div class="alert alert-info" ng-if="Message">{{Message}}</div>
     </div>
 
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
