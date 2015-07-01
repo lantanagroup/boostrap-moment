@@ -22,7 +22,8 @@ angular.module('bmTestApp', ['bootstrapMoment'])
         $scope.Options = {
             Placement: 'bottom',
             Required: false,
-            RunCustomValidation: false
+            RunCustomValidation: false,
+            InitWithDate: true
         };
         $scope.Data = {
             CurrentDate: null

@@ -8,7 +8,8 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                 Placement: '=?placement',
                 OnChange: '&?onChange',
                 Validate: '&?validate',
-                IsValid: '=?isValid'
+                IsValid: '=?isValid',
+                InitWithDate: '=?init'
             },
             templateUrl: 'bootstrapmoment.html',
             link: function(scope, element, attrs) {
@@ -86,10 +87,14 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     scope.Placement = 'left';
                 }
 
-                if (scope.Required && !scope.CurrentDate) {
+                if (!isSet(scope.InitWithDate)) {
+                    scope.InitWithDate = true;
+                }
+
+                if (scope.Required && scope.InitWithDate && !scope.CurrentDate) {
                     scope.CurrentDate = moment().zone(getLocalOffset());
                     scope.CurrentDate.milliseconds(0);
-                } else if (scope.CurrentDate && !scope.CurrentDate.isValid()) {
+                } else if (scope.CurrentDate && scope.InitWithDate && !scope.CurrentDate.isValid()) {
                     scope.CurrentDate = moment().zone(getLocalOffset());
                     scope.CurrentDate.milliseconds(0);
                 }

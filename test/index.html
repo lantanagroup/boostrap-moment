@@ -31,12 +31,15 @@
                 <div class="form-group">
                     <input type="checkbox" ng-model="Options.RunCustomValidation"> Custom Validation
                 </div>
+                <div class="form-group">
+                    <input type="checkbox" ng-model="Options.InitWithDate"> Init With Date
+                </div>
             </div>
         </div>
 
         <div ng-if="!Rendering">
-            <bootstrap-moment ng-if="!Options.RunCustomValidation" current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)" is-valid="Data.DateIsValid"></bootstrap-moment>
-            <bootstrap-moment ng-if="Options.RunCustomValidation" current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)" is-valid="Data.DateIsValid" validate="ValidateDate(date)"></bootstrap-moment>
+            <bootstrap-moment ng-if="!Options.RunCustomValidation" current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)" is-valid="Data.DateIsValid" init="Options.InitWithDate"></bootstrap-moment>
+            <bootstrap-moment ng-if="Options.RunCustomValidation" current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)" is-valid="Data.DateIsValid" init="Options.InitWithDate" validate="ValidateDate(date)"></bootstrap-moment>
         </div>
         <br/>
         <p class="alert alert-info">
