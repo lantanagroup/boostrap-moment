@@ -1,0 +1,17 @@
+{
+  "name": "bootstrap-moment",
+  "description": "A date/time picker that is based on Angular.JS, Bootstrap and Moment.JS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lantanagroup/boostrap-moment",
+  "license": "Apache License Version 2.0, January 2004",
+  "private": false,
+  "main": [
+    "bootstrap-moment.js"
+  ],
+  "dependencies": {
+    "angular": "~1.4.0",
+    "moment": "~2.10.3",
+    "moment-timezone": "~0.4.0",
+    "angular-bootstrap": "~0.13.0"
+  }
+}

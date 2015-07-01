@@ -1,0 +1,92 @@
+<style type="text/css">
+    .popover .selected span {
+        font-weight: bold;
+        font-size: 18px;
+        line-height: 19px;
+    }
+
+    .popover span[ng-click],
+    .popover i[ng-click] {
+        cursor: pointer;
+    }
+
+    .popover input {
+        width: 58px !important;
+    }
+
+    .popover .row {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+
+    .popover th,
+    .popover td {
+        padding: 4px !important;
+        text-align: center;
+    }
+
+    .popover .dropdown-menu {
+        max-height: 150px;
+        overflow-y: scroll;
+    }
+</style>
+<div class="input-group">
+    <div style="position: relative;">
+        <input type="text" class="form-control" style="width: 50%;" ng-model="TextFields.date" ng-model-options="{updateOn: 'blur'}">
+    </div>
+
+    <input type="text" class="form-control" style="width: 50%;" ng-model="TextFields.time" ng-model-options="{updateOn: 'blur'}">
+    <span class="input-group-btn">
+        <button popover-template="'calendarTemplate'" popover-placement="bottom" type="button" class="btn btn-default"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+
+    <script type="text/ng-template" id="calendarTemplate">
+        <table class="table" style="width: 100px;">
+            <thead>
+            <tr>
+                <th colspan="2">
+                    <i class="glyphicon glyphicon-fast-backward" title="Previous Year" ng-click="ChangeYear(-1)"></i>
+                    <i class="glyphicon glyphicon-backward" title="Previous Month" ng-click="ChangeMonth(-1)"></i>
+                </th>
+                <th colspan="3" style="text-align: center;">
+                    {{CalendarDate.format('MMM')}} {{CalendarDate.year()}}
+                </th>
+                <th colspan="2">
+                    <div class="pull-right">
+                        <i class="glyphicon glyphicon-forward" title="Next Month" ng-click="ChangeMonth(1)"></i>
+                        <i class="glyphicon glyphicon-fast-forward" title="Next Year" ng-click="ChangeYear(1)"></i>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th>Su</th>
+                <th>Mo</th>
+                <th>Tu</th>
+                <th>We</th>
+                <th>Th</th>
+                <th>Fr</th>
+                <th>Sa</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="cWeek in Weeks">
+                <td ng-repeat="cDate in cWeek.days" ng-class="{ 'selected': IsSelected(cDate.date) }">
+                    <span ng-if="cDate.date" ng-click="SelectDate(cDate.date)">{{GetDateDisplay(cDate.date)}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="input-group input-group-sm">
+            <input type="number" class="form-control input-sm" ng-model="CurrentTime.hours" />
+            <input type="number" class="form-control input-sm" ng-model="CurrentTime.minutes" />
+
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-primary btn-sm" dropdown-toggle data-toggle="dropdown">{{CurrentTime.zone}} <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right" role="menu">
+                    <li ng-repeat="z in Zones"><a ng-click="SelectZone(z)">(UTC{{z.offsetString}}) {{z.name}}</a></li>
+                </ul>
+            </div>
+        </div>
+    </script>
+</div>
