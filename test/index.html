@@ -28,14 +28,23 @@
                 <div class="form-group">
                     <input type="checkbox" ng-model="Options.Required"> Required
                 </div>
+                <div class="form-group">
+                    <input type="checkbox" ng-model="Options.RunCustomValidation"> Custom Validation
+                </div>
             </div>
         </div>
 
         <div ng-if="!Rendering">
-            <bootstrap-moment current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)"></bootstrap-moment>
+            <bootstrap-moment ng-if="!Options.RunCustomValidation" current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)" is-valid="Data.DateIsValid"></bootstrap-moment>
+            <bootstrap-moment ng-if="Options.RunCustomValidation" current-date="Data.CurrentDate" placement="Options.Placement" required="Options.Required" on-change="DateChanged(newDate)" is-valid="Data.DateIsValid" validate="ValidateDate(date)"></bootstrap-moment>
         </div>
-        {{Data.CurrentDate ? Data.CurrentDate.format() : ''}}
-        <div class="alert alert-info" ng-if="Message">{{Message}}</div>
+        <br/>
+        <p class="alert alert-info">
+            CurrentDate: {{Data.CurrentDate ? Data.CurrentDate.format() : ''}}
+            <br/>
+            DateIsValid: {{Data.DateIsValid}}
+        </p>
+        <p class="alert alert-warning" ng-if="Message">{{Message}}</p>
     </div>
 
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>

@@ -44,7 +44,14 @@
 .date-group .date-text {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
+}
+
+.date-group:not(.has-error) .date-text {
     border-left: 1px solid #ccc;
+}
+
+.date-group.has-error .date-text {
+    border-left: 1px solid #a94442;
 }
 
 .date-group button:last-child {
@@ -102,4 +109,10 @@
 
 .popover:not(.in) {
     display: none !important;
+}
+
+.has-error .btn {
+    border-color: #a94442 !important;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075) !important;
 }

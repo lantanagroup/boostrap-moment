@@ -15,16 +15,29 @@ angular.module('bootstrapMoment')
     }]);
 
 angular.module('bmTestApp', ['bootstrapMoment'])
+    .config(function() {
+        moment.locale('en');
+    })
     .controller('TestCtrl', function($scope) {
         $scope.Options = {
             Placement: 'bottom',
-            Required: false
+            Required: false,
+            RunCustomValidation: false
         };
         $scope.Data = {
             CurrentDate: null
         };
         $scope.Rendering = false;
         $scope.Message = '';
+
+        $scope.ValidateDate = function(date) {
+            if (!date) {
+                return false;
+            }
+
+            var diff = moment().diff(date, 'minutes');
+            return diff >= 0;
+        };
 
         $scope.DateChanged = function(newDate) {
             $scope.Message = 'Date has changed to ' + (newDate ? newDate.format() : 'NULL');

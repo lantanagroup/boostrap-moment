@@ -6,15 +6,13 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                 CurrentDate: '=?currentDate',
                 Required: '=?required',
                 Placement: '=?placement',
-                OnChange: '&?onChange'
+                OnChange: '&?onChange',
+                Validate: '&?validate',
+                IsValid: '=?isValid'
             },
             templateUrl: 'bootstrapmoment.html',
             link: function(scope, element, attrs) {
-                moment.locale('en');
-
                 scope.Zones = [{"offset":-720,"name":"International Date Line West","offsetString":"-12:00"},{"offset":-660,"name":"Coordinated Universal Time-11","offsetString":"-11:00"},{"offset":-600,"name":"Hawaii","offsetString":"-10:00"},{"offset":-540,"name":"Alaska","offsetString":"-09:00"},{"offset":-480,"name":"Pacific Time (US & Canada)","offsetString":"-08:00"},{"offset":-480,"name":"Baja California","offsetString":"-08:00"},{"offset":-420,"name":"Mountain Time (US & Canada)","offsetString":"-07:00"},{"offset":-420,"name":"Chihuahua, La Paz, Mazatlan","offsetString":"-07:00"},{"offset":-420,"name":"Arizona","offsetString":"-07:00"},{"offset":-360,"name":"Saskatchewan","offsetString":"-06:00"},{"offset":-360,"name":"Guadalajara, Mexico City, Monterrey","offsetString":"-06:00"},{"offset":-360,"name":"Central Time (US & Canada)","offsetString":"-06:00"},{"offset":-360,"name":"Central America","offsetString":"-06:00"},{"offset":-300,"name":"Indiana (East)","offsetString":"-05:00"},{"offset":-300,"name":"Eastern Time (US & Canada)","offsetString":"-05:00"},{"offset":-300,"name":"Chetumal","offsetString":"-05:00"},{"offset":-300,"name":"Bogota, Lima, Quito, Rio Branco","offsetString":"-05:00"},{"offset":-258,"name":"Caracas","offsetString":"-04:30"},{"offset":-240,"name":"Georgetown, La Paz, Manaus, San Juan","offsetString":"-04:00"},{"offset":-240,"name":"Cuiaba","offsetString":"-04:00"},{"offset":-240,"name":"Atlantic Time (Canada)","offsetString":"-04:00"},{"offset":-240,"name":"Asuncion","offsetString":"-04:00"},{"offset":-198,"name":"Newfoundland","offsetString":"-03:30"},{"offset":-180,"name":"Santiago","offsetString":"-03:00"},{"offset":-180,"name":"Salvador","offsetString":"-03:00"},{"offset":-180,"name":"Montevideo","offsetString":"-03:00"},{"offset":-180,"name":"Greenland","offsetString":"-03:00"},{"offset":-180,"name":"Cayenne, Fortaleza","offsetString":"-03:00"},{"offset":-180,"name":"Buenos Aires","offsetString":"-03:00"},{"offset":-180,"name":"Brasilia","offsetString":"-03:00"},{"offset":-120,"name":"Mid-Atlantic","offsetString":"-02:00"},{"offset":-120,"name":"Coordinated Universal Time-02","offsetString":"-02:00"},{"offset":-60,"name":"Cape Verde Is.","offsetString":"-01:00"},{"offset":-60,"name":"Azores","offsetString":"-01:00"},{"offset":840,"name":"Kiritimati Island","offsetString":"+14:00"},{"offset":780,"name":"Samoa","offsetString":"+13:00"},{"offset":780,"name":"Nuku\'alofa","offsetString":"+13:00"},{"offset":720,"name":"Petropavlovsk-Kamchatsky - Old","offsetString":"+12:00"},{"offset":720,"name":"Fiji","offsetString":"+12:00"},{"offset":720,"name":"Coordinated Universal Time+12","offsetString":"+12:00"},{"offset":720,"name":"Auckland, Wellington","offsetString":"+12:00"},{"offset":720,"name":"Anadyr, Petropavlovsk-Kamchatsky (RTZ 11)","offsetString":"+12:00"},{"offset":660,"name":"Solomon Is., New Caledonia","offsetString":"+11:00"},{"offset":660,"name":"Chokurdakh (RTZ 10)","offsetString":"+11:00"},{"offset":600,"name":"Vladivostok, Magadan (RTZ 9)","offsetString":"+10:00"},{"offset":600,"name":"Magadan","offsetString":"+10:00"},{"offset":600,"name":"Hobart","offsetString":"+10:00"},{"offset":600,"name":"Guam, Port Moresby","offsetString":"+10:00"},{"offset":600,"name":"Canberra, Melbourne, Sydney","offsetString":"+10:00"},{"offset":600,"name":"Brisbane","offsetString":"+10:00"},{"offset":558,"name":"Darwin","offsetString":"+09:30"},{"offset":558,"name":"Adelaide","offsetString":"+09:30"},{"offset":540,"name":"Yakutsk (RTZ 8)","offsetString":"+09:00"},{"offset":540,"name":"Seoul","offsetString":"+09:00"},{"offset":540,"name":"Osaka, Sapporo, Tokyo","offsetString":"+09:00"},{"offset":480,"name":"Ulaanbaatar","offsetString":"+08:00"},{"offset":480,"name":"Taipei","offsetString":"+08:00"},{"offset":480,"name":"Perth","offsetString":"+08:00"},{"offset":480,"name":"KualaLumpur, Singapore","offsetString":"+08:00"},{"offset":480,"name":"Irkutsk (RTZ 7)","offsetString":"+08:00"},{"offset":480,"name":"Beijing, Chongqing, Hong Kong, Urumqi","offsetString":"+08:00"},{"offset":420,"name":"Krasnoyarsk (RTZ 6)","offsetString":"+07:00"},{"offset":420,"name":"Bangkok, Hanoi, Jakarta","offsetString":"+07:00"},{"offset":378,"name":"Yangon (Rangoon)","offsetString":"+06:30"},{"offset":360,"name":"Novosibirsk (RTZ 5)","offsetString":"+06:00"},{"offset":360,"name":"Dhaka","offsetString":"+06:00"},{"offset":360,"name":"Astana","offsetString":"+06:00"},{"offset":327,"name":"Kathmandu","offsetString":"+05:45"},{"offset":318,"name":"Sri Jayawardenepura","offsetString":"+05:30"},{"offset":318,"name":"Chennai, Kolkata, Mumbai, New Delhi","offsetString":"+05:30"},{"offset":300,"name":"Islamabad, Karachi","offsetString":"+05:00"},{"offset":300,"name":"Ekaterinburg (RTZ 4)","offsetString":"+05:00"},{"offset":300,"name":"Ashgabat, Tashkent","offsetString":"+05:00"},{"offset":258,"name":"Kabul","offsetString":"+04:30"},{"offset":240,"name":"Yerevan","offsetString":"+04:00"},{"offset":240,"name":"Tbilisi","offsetString":"+04:00"},{"offset":240,"name":"Port Louis","offsetString":"+04:00"},{"offset":240,"name":"Izhevsk, Samara (RTZ 3)","offsetString":"+04:00"},{"offset":240,"name":"Baku","offsetString":"+04:00"},{"offset":240,"name":"Abu Dhabi, Muscat","offsetString":"+04:00"},{"offset":198,"name":"Tehran","offsetString":"+03:30"},{"offset":180,"name":"Nairobi","offsetString":"+03:00"},{"offset":180,"name":"Moscow, St. Petersburg, Volgograd (RTZ 2)","offsetString":"+03:00"},{"offset":180,"name":"Minsk","offsetString":"+03:00"},{"offset":180,"name":"Kuwait, Riyadh","offsetString":"+03:00"},{"offset":180,"name":"Baghdad","offsetString":"+03:00"},{"offset":120,"name":"Tripoli","offsetString":"+02:00"},{"offset":120,"name":"Kaliningrad (RTZ 1)","offsetString":"+02:00"},{"offset":120,"name":"Jerusalem","offsetString":"+02:00"},{"offset":120,"name":"Istanbul","offsetString":"+02:00"},{"offset":120,"name":"Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius","offsetString":"+02:00"},{"offset":120,"name":"Harare, Pretoria","offsetString":"+02:00"},{"offset":120,"name":"E. Europe","offsetString":"+02:00"},{"offset":120,"name":"Damascus","offsetString":"+02:00"},{"offset":120,"name":"Cairo","offsetString":"+02:00"},{"offset":120,"name":"Beirut","offsetString":"+02:00"},{"offset":120,"name":"Athens, Bucharest","offsetString":"+02:00"},{"offset":120,"name":"Amman","offsetString":"+02:00"},{"offset":60,"name":"Windhoek","offsetString":"+01:00"},{"offset":60,"name":"West Central Africa","offsetString":"+01:00"},{"offset":60,"name":"Sarajevo, Skopje, Warsaw, Zagreb","offsetString":"+01:00"},{"offset":60,"name":"Brussels, Copenhagen, Madrid, Paris","offsetString":"+01:00"},{"offset":60,"name":"Belgrade, Bratislava, Budapest, Ljubljana, Prague","offsetString":"+01:00"},{"offset":60,"name":"Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna","offsetString":"+01:00"},{"offset":0,"name":"Monrovia, Reykjavik","offsetString":""},{"offset":0,"name":"Dublin, Edinburgh, Lisbon, London","offsetString":""},{"offset":0,"name":"Coordinated Universal Time","offsetString":""},{"offset":0,"name":"Casablanca","offsetString":""}];
-                scope.DateValid = true;
-                scope.TimeValid = true;
 
                 var getCalendarWeeks = function(selectedDate) {
                     var currentDate = moment(selectedDate).date(1).hours(0).minutes(0).seconds(0).milliseconds(0);
@@ -72,6 +70,18 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     return offset;
                 };
 
+                var isSet = function(obj) {
+                    return obj != null && obj != undefined;
+                };
+
+                var validate = function() {
+                    if (scope.Validate) {
+                        scope.IsValid = scope.Validate({ date: scope.CurrentDate });
+                    } else {
+                        scope.IsValid = !scope.Required || (isSet(scope.CurrentDate) && scope.CurrentDate.isValid());
+                    }
+                };
+
                 if (!scope.Placement) {
                     scope.Placement = 'left';
                 }
@@ -112,6 +122,8 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     if (scope.OnChange) {
                         scope.OnChange({ newDate: scope.CurrentDate });
                     }
+                    
+                    validate();
                 };
 
                 scope.SelectToday = function() {
@@ -168,6 +180,7 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     }
 
                     scope.ClosePopover();
+                    validate();
                 };
 
                 scope.ClosePopover = function() {
@@ -181,6 +194,8 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     if (scope.CurrentDate) {
                         scope.CurrentDate.zone(zone.offsetString);
                     }
+
+                    validate();
                 };
 
                 scope.ChangeYear = function(change) {
@@ -244,6 +259,8 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     scope.CurrentDate.hours(newCurrentTime.hours);
                     scope.CurrentDate.minutes(newCurrentTime.minutes);
 
+                    validate();
+
                     if (scope.OnChange) {
                         scope.OnChange({ newDate: scope.CurrentDate });
                     }
@@ -268,18 +285,25 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                         scope.CurrentDate.month(newDate.month());
                         scope.CurrentDate.date(newDate.date());
                     }
+
+                    validate();
+
+                    if (scope.OnChange) {
+                        scope.OnChange({ newDate: scope.CurrentDate });
+                    }
                 });
+
+                validate();
             }
         };
     });
 
 /* ANGULAR TEMPLATE HERE */
-
 angular.module('bootstrapMoment').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('bootstrapmoment.html',
-    "<div><div class=\"date-group\"><div class=\"inner-addon right-addon\"><span tabindex=\"0\" class=\"glyphicon glyphicon-calendar inner-addon-middle\" popover-template=\"'calendarTemplate'\" popover-placement=\"{{Placement}}\" popover-append-to-body=\"true\"></span> <input type=\"text\" class=\"form-control date-text\" style=\"width: 100%\" ng-model=\"TextFields.date\" ng-model-options=\"{updateOn: 'blur'}\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeHour(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeHour(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.hours\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeMinute(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeMinute(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.minutes\"></div><button type=\"button\" class=\"btn btn-default btn-sm\" dropdown-toggle dropdown-append-to-body=\"false\" data-toggle=\"dropdown\">{{CurrentTime.zone}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu pull-right\" role=\"menu\"><li ng-repeat=\"z in Zones\"><a ng-click=\"SelectZone(z)\">(UTC{{z.offsetString}}) {{z.name}}</a></li></ul><button type=\"button\" class=\"btn btn-default\" ng-click=\"SelectToday()\"><i class=\"glyphicon glyphicon-asterisk\" title=\"Today\"></i></button> <button type=\"button\" class=\"btn btn-default\" ng-click=\"ClearDate()\"><i class=\"glyphicon glyphicon-remove\" title=\"Clear\"></i></button></div><script type=\"text/ng-template\" id=\"calendarTemplate\"><div class=\"date-popover\">\r" +
+    "<div><div class=\"date-group has-feedback\" ng-class=\"{ 'has-error': !IsValid }\"><div class=\"inner-addon right-addon\"><span tabindex=\"0\" class=\"glyphicon glyphicon-calendar inner-addon-middle\" popover-template=\"'calendarTemplate'\" popover-placement=\"{{Placement}}\" popover-append-to-body=\"true\"></span> <input type=\"text\" class=\"form-control date-text\" style=\"width: 100%\" ng-model=\"TextFields.date\" ng-model-options=\"{updateOn: 'blur'}\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeHour(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeHour(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.hours\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeMinute(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeMinute(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.minutes\"></div><button type=\"button\" class=\"btn btn-default btn-sm\" dropdown-toggle dropdown-append-to-body=\"false\" data-toggle=\"dropdown\">{{CurrentTime.zone}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu pull-right\" role=\"menu\"><li ng-repeat=\"z in Zones\"><a ng-click=\"SelectZone(z)\">(UTC{{z.offsetString}}) {{z.name}}</a></li></ul><button type=\"button\" class=\"btn btn-default\" ng-click=\"SelectToday()\"><i class=\"glyphicon glyphicon-asterisk\" title=\"Today\"></i></button> <button type=\"button\" class=\"btn btn-default\" ng-click=\"ClearDate()\"><i class=\"glyphicon glyphicon-remove\" title=\"Clear\"></i></button></div><script type=\"text/ng-template\" id=\"calendarTemplate\"><div class=\"date-popover\">\r" +
     "\n" +
     "            <table class=\"table\">\r" +
     "\n" +

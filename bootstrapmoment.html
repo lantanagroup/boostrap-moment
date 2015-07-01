@@ -1,5 +1,5 @@
 <div>
-    <div class="date-group">
+    <div class="date-group has-feedback" ng-class="{ 'has-error': !IsValid }">
         <div class="inner-addon right-addon">
             <span tabindex="0" class="glyphicon glyphicon-calendar inner-addon-middle" popover-template="'calendarTemplate'" popover-placement="{{Placement}}" popover-append-to-body="true"></span>
             <input type="text" class="form-control date-text" style="width: 100%;" ng-model="TextFields.date" ng-model-options="{updateOn: 'blur'}">
