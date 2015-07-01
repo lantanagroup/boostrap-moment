@@ -14,7 +14,7 @@
             <i class="glyphicon glyphicon-chevron-down inner-addon-bottom" ng-click="ChangeMinute(-1)"></i>
             <input type="text" class="form-control" style="width: 100%;" ng-model="CurrentTime.minutes">
         </div>
-        <button type="button" class="btn btn-primary btn-sm" dropdown-toggle dropdown-append-to-body="false" data-toggle="dropdown">{{CurrentTime.zone}} <span class="caret"></span>
+        <button type="button" class="btn btn-default btn-sm" dropdown-toggle dropdown-append-to-body="false" data-toggle="dropdown">{{CurrentTime.zone}} <span class="caret"></span>
         </button>
         <ul class="dropdown-menu pull-right" role="menu">
             <li ng-repeat="z in Zones"><a ng-click="SelectZone(z)">(UTC{{z.offsetString}}) {{z.name}}</a></li>
