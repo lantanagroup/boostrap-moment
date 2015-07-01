@@ -1,7 +1,7 @@
 <div>
     <div class="date-group">
         <div class="inner-addon right-addon">
-            <i class="glyphicon glyphicon-calendar inner-addon-middle" popover-template="'calendarTemplate'" popover-placement="{{Placement}}" popover-append-to-body="true"></i>
+            <span tabindex="0" class="glyphicon glyphicon-calendar inner-addon-middle" popover-template="'calendarTemplate'" popover-placement="{{Placement}}" popover-append-to-body="true"></span>
             <input type="text" class="form-control date-text" style="width: 100%;" ng-model="TextFields.date" ng-model-options="{updateOn: 'blur'}">
         </div>
         <div class="inner-addon right-addon">
@@ -61,5 +61,6 @@
                 </tbody>
             </table>
         </div>
+        <button type="button" class="btn btn-primary btn-sm" ng-click="ClosePopover()">Close</button>
     </script>
 </div>

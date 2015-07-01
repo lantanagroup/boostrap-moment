@@ -166,6 +166,13 @@ angular.module('bootstrapMoment', ['ui.bootstrap'])
                     if (scope.OnChange) {
                         scope.OnChange({ newDate: scope.CurrentDate });
                     }
+
+                    scope.ClosePopover();
+                };
+
+                scope.ClosePopover = function() {
+                    // This is a bit of a hack; It closes the popover... but if the popover is not the first child scope, this will fail.
+                    scope.$$childHead.isOpen = false;
                 };
 
                 scope.SelectZone = function(zone) {
@@ -271,7 +278,7 @@ angular.module('bootstrapMoment').run(['$templateCache', function($templateCache
   'use strict';
 
   $templateCache.put('bootstrapmoment.html',
-    "<div><div class=\"date-group\"><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-calendar inner-addon-middle\" popover-template=\"'calendarTemplate'\" popover-placement=\"{{Placement}}\" popover-append-to-body=\"true\"></i> <input type=\"text\" class=\"form-control date-text\" style=\"width: 100%\" ng-model=\"TextFields.date\" ng-model-options=\"{updateOn: 'blur'}\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeHour(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeHour(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.hours\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeMinute(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeMinute(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.minutes\"></div><button type=\"button\" class=\"btn btn-primary btn-sm\" dropdown-toggle dropdown-append-to-body=\"false\" data-toggle=\"dropdown\">{{CurrentTime.zone}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu pull-right\" role=\"menu\"><li ng-repeat=\"z in Zones\"><a ng-click=\"SelectZone(z)\">(UTC{{z.offsetString}}) {{z.name}}</a></li></ul><button type=\"button\" class=\"btn btn-default\" ng-click=\"SelectToday()\"><i class=\"glyphicon glyphicon-asterisk\" title=\"Today\"></i></button> <button type=\"button\" class=\"btn btn-default\" ng-click=\"ClearDate()\"><i class=\"glyphicon glyphicon-remove\" title=\"Clear\"></i></button></div><script type=\"text/ng-template\" id=\"calendarTemplate\"><div class=\"date-popover\">\r" +
+    "<div><div class=\"date-group\"><div class=\"inner-addon right-addon\"><span tabindex=\"0\" class=\"glyphicon glyphicon-calendar inner-addon-middle\" popover-template=\"'calendarTemplate'\" popover-placement=\"{{Placement}}\" popover-append-to-body=\"true\"></span> <input type=\"text\" class=\"form-control date-text\" style=\"width: 100%\" ng-model=\"TextFields.date\" ng-model-options=\"{updateOn: 'blur'}\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeHour(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeHour(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.hours\"></div><div class=\"inner-addon right-addon\"><i class=\"glyphicon glyphicon-chevron-up inner-addon-top\" ng-click=\"ChangeMinute(1)\"></i> <i class=\"glyphicon glyphicon-chevron-down inner-addon-bottom\" ng-click=\"ChangeMinute(-1)\"></i> <input type=\"text\" class=\"form-control\" style=\"width: 100%\" ng-model=\"CurrentTime.minutes\"></div><button type=\"button\" class=\"btn btn-primary btn-sm\" dropdown-toggle dropdown-append-to-body=\"false\" data-toggle=\"dropdown\">{{CurrentTime.zone}} <span class=\"caret\"></span></button><ul class=\"dropdown-menu pull-right\" role=\"menu\"><li ng-repeat=\"z in Zones\"><a ng-click=\"SelectZone(z)\">(UTC{{z.offsetString}}) {{z.name}}</a></li></ul><button type=\"button\" class=\"btn btn-default\" ng-click=\"SelectToday()\"><i class=\"glyphicon glyphicon-asterisk\" title=\"Today\"></i></button> <button type=\"button\" class=\"btn btn-default\" ng-click=\"ClearDate()\"><i class=\"glyphicon glyphicon-remove\" title=\"Clear\"></i></button></div><script type=\"text/ng-template\" id=\"calendarTemplate\"><div class=\"date-popover\">\r" +
     "\n" +
     "            <table class=\"table\">\r" +
     "\n" +
@@ -343,7 +350,9 @@ angular.module('bootstrapMoment').run(['$templateCache', function($templateCache
     "\n" +
     "            </table>\r" +
     "\n" +
-    "        </div></script></div>"
+    "        </div>\r" +
+    "\n" +
+    "        <button type=\"button\" class=\"btn btn-primary btn-sm\" ng-click=\"ClosePopover()\">Close</button></script></div>"
   );
 
 }]);

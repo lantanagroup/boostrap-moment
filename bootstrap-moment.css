@@ -56,6 +56,11 @@
     max-width: 186px;
 }
 
+.popover button {
+    width: 100%;
+    margin-top: -17px;
+}
+
 .date-group *[ng-click] {
     cursor: pointer;
 }
@@ -89,7 +94,7 @@
 
 /* align icon */
 .left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 3px;}
+.right-addon .glyphicon { right: 5px;}
 
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
