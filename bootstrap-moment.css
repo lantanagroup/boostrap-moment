@@ -77,8 +77,12 @@
     position: relative;
 }
 
+.inner-addon:first-child {
+    width: 135px;
+}
+
 .inner-addon:not(:first-child) {
-    width: 75px;
+    width: 60px;
 }
 
 /* style icon */
@@ -101,11 +105,13 @@
 
 /* align icon */
 .left-addon .glyphicon  { left:  0px;}
-.right-addon .glyphicon { right: 5px;}
+.right-addon .glyphicon { right: 2px;}
 
 /* add padding  */
 .left-addon input  { padding-left:  30px; }
-.right-addon input { padding-right: 30px; }
+.right-addon input {
+    padding-right: 30px !important;
+}
 
 .popover:not(.in) {
     display: none !important;
